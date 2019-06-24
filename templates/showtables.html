@@ -1,0 +1,55 @@
+{% extends 'base/layout.html' %}
+
+{% block content %}
+<div class="container">
+    <form action="",method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" class="btn btn-warning">Search</form></button>
+    </form>
+
+</div>
+
+{% if book %}
+<div class="containe mt-5">
+    <table class="table">
+        <thead class="thread-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Book Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Purchase Date</th>
+            <th scope="col">Genre</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for bk in book %}
+
+
+          <tr>
+            <th scope="row">1</th>
+            <td>{{bk.name}}</td>
+            <td>{{bk.book_author}}</td>
+            <td>{{bk.purchase_date}}</td>
+            <td>
+             
+            </td>
+            <td>
+                <a href="/editbook/{{bk.id}}">
+                    <span class="text-muted">Edit</span>
+                </a>
+                <a href="/deletebook/{{bk.id}}">
+                        <span class="text-danger">Delete</span>
+                    </a>
+            </td>
+
+          </tr>
+          {% endfor %}
+           
+        </tbody>
+      </table>
+</div>
+{% endif %}
+
+{% endblock %}
